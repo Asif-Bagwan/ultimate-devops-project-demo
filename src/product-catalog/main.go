@@ -309,3 +309,4 @@ func (p *productCatalog) checkProductFailure(ctx context.Context, id string) boo
 }
 
 //comment to test PR
+//another comment to test PR
