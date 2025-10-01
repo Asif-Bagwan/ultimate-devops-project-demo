@@ -272,7 +272,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 		return nil, status.Errorf(codes.NotFound, msg)
 	}
 
-	msg := "Product Found - ID: %s, Name: %s", req.Id, found.Name
+	msg := fmt.Sprintf("Product Found - ID: %s, Name: %s", req.Id, found.Name)
 	span.AddEvent(msg)
 	span.SetAttributes(
 		attribute.String("app.product.name", found.Name),
