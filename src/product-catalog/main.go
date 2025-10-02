@@ -251,7 +251,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 
 	// GetProduct will fail on a specific product when feature flag is enabled
 	if p.checkProductFailure(ctx, req.Id) {
-		msg := fmt.Sprintf("Error: Product Catalog Fail Feature Flag Enabled")
+		msg := "Error: Product Catalog Fail Feature Flag Enabled"
 		span.SetStatus(otelcodes.Error, msg)
 		span.AddEvent(msg)
 		return nil, status.Errorf(codes.Internal, msg)
@@ -272,7 +272,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 		return nil, status.Errorf(codes.NotFound, msg)
 	}
 
-	msg := "Product Found - ID: %s, Name: %s", req.Id, found.Name
+	msg := fmt.Sprintf("Product Found - ID: %s, Name: %s", req.Id, found.Name)
 	span.AddEvent(msg)
 	span.SetAttributes(
 		attribute.String("app.product.name", found.Name),
